@@ -4,17 +4,20 @@ import axios from "axios";
 // import { v4 as uuid } from 'uuid';
 
 // const BASE_URL = "https://jsonplaceholder.typicode.com/posts";
-const BASE_URL = "https://crudcrud.com/api/755661ddbba048079d0caff54268836e/posts";
+const BASE_URL = "https://crudcrud.com/api/8550a9d7e91f4b27995fa6a17bc098e8/posts";
 
 function Home() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios.get(BASE_URL).then((response) => {
       setPosts(response.data);
-    })
+    }).catch(error => {
+      setError(error.message);
+    });
   }, []);
 
   const deletePost = (postId) => {
@@ -24,12 +27,23 @@ function Home() {
       .delete(BASE_URL + "/" + postId)
       .then(() => {
         setDeleteId(null)
+        setTimeout(() => {
+          alert("Post Deleted!")
+        }, 100);
         axios.get(BASE_URL).then((response) => {
           setPosts(response.data);
-        })
-        alert("Post Deleted!")
+        }).catch(error => {
+          setError(error.message);
+        });
+      }).catch(error => {
+        setError(error.message);
+        setDeleteId(null)
       });
   }
+
+  useEffect(() => {
+  }, [error]);
+
 
   const renderPostsList = () => {
     if (posts.length === 0) {
@@ -67,7 +81,9 @@ function Home() {
     <h4>Latest Posts</h4>
     <br />
 
-    {posts ? renderPostsList() : <p>Loading...</p>}
+    {error ? <p className="error">{error}</p> : ''}
+    {posts ? renderPostsList() : ''}
+    {!posts && !error ? <p>Loading...</p> : ''}
 
     <br />
     <Link to="/post/add">Add Post</Link>

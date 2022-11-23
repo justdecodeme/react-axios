@@ -4,17 +4,17 @@ import axios from "axios";
 // import { v4 as uuid } from 'uuid';
 
 // const BASE_URL = "https://jsonplaceholder.typicode.com/posts";
-const BASE_URL = "https://crudcrud.com/api/755661ddbba048079d0caff54268836e/posts";
+const BASE_URL = "https://crudcrud.com/api/8550a9d7e91f4b27995fa6a17bc098e8/posts";
 
 
 function PostAdd() {
   const [form, setForm] = useState({ title: '', body: '' })
   const [adding, setAdding] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (key, value) => {
     setForm({ ...form, [key]: value })
   }
-
 
   const addPost = () => {
     setAdding(true)
@@ -30,12 +30,18 @@ function PostAdd() {
         setTimeout(() => {
           alert("Post Added!")
         }, 100);
+      }).catch(error => {
+        setAdding(false)
+        setError(error.message);
       });
   }
 
-  return <div className="PostAdd">
+  return <div className="PostAddEdit">
     <h3>Add Post</h3>
     <br />
+
+    {error ? <p className="error">{error}</p> : ''}
+
     <div className="form">
       <input type="text" placeholder="Title..." value={form.title} onChange={(e) => handleChange('title', e.target.value)} />
       <br />

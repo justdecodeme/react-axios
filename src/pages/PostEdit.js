@@ -4,7 +4,7 @@ import axios from "axios";
 // import { v4 as uuid } from 'uuid';
 
 // const BASE_URL = "https://jsonplaceholder.typicode.com/posts";
-const BASE_URL = "https://crudcrud.com/api/755661ddbba048079d0caff54268836e/posts";
+const BASE_URL = "https://crudcrud.com/api/8550a9d7e91f4b27995fa6a17bc098e8/posts";
 
 
 function PostEdit() {
@@ -13,6 +13,7 @@ function PostEdit() {
   const [form, setForm] = useState({ title: '', body: '' })
   const [adding, setAdding] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleChange = (key, value) => {
     setForm({ ...form, [key]: value })
@@ -22,7 +23,10 @@ function PostEdit() {
     axios.get(BASE_URL + "/" + postId).then((response) => {
       setForm({ title: response.data.title, body: response.data.body })
       setLoading(false)
-    })
+    }).catch(error => {
+      setLoading(false)
+      setError(error.message + ": Post not found");
+    });
   }, []);
 
 
@@ -41,12 +45,19 @@ function PostEdit() {
           alert("Post Updated!")
           navigate('/posts')
         }, 100);
+      }).catch(error => {
+        setLoading(false)
+        setAdding(false)
+        setError(error.message);
       });
   }
 
   return <div className="PostAddEdit">
     <h3>Edit Post</h3>
     <br />
+
+    {error ? <p className="error">{error}</p> : ''}
+
     {loading ? <p>Loading...</p> :
       <div className="form">
         <input type="text" placeholder="Title..." value={form.title} onChange={(e) => handleChange('title', e.target.value)} />

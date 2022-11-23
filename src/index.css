@@ -24,6 +24,14 @@ button {
 	padding: 6px 10px;
 	cursor: pointer;
 }
+.error {
+	color: red;
+	border: 1px solid red;
+	display: inline-block;
+	padding: 10px 15px;
+	border-radius: 8px;
+	margin-bottom: 15px;
+}
 
 table {
 	/* table-layout: fixed; */
