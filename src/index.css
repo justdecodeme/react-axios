@@ -5,19 +5,24 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
-
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
-
 li {
 	list-style: none;
+}
+input,
+textarea {
+	padding: 10px;
+}
+button {
+	padding: 6px 10px;
+	cursor: pointer;
 }
 
 table {
@@ -27,7 +32,6 @@ table {
 	border: 2px solid #ccc;
 	text-align: left;
 }
-
 table tr {
 	border-bottom: 1px solid #ccc;
 }
@@ -42,12 +46,10 @@ table td:first-child {
 }
 table th:last-child,
 table td:last-child {
-	width: 250px;
+	width: 270px;
 }
 table td button {
 	margin: 0 10px;
-	padding: 6px 10px;
-	cursor: pointer;
 }
 
 header,
@@ -61,11 +63,9 @@ header ul {
 	display: flex;
 	justify-content: space-between;
 }
-
 header ul li {
 	margin-left: 20px;
 }
-
 header ul li a {
 	text-decoration: none;
 }
@@ -79,6 +79,15 @@ footer {
 
 main {
 	padding: 40px;
+}
+
+.PostAddEdit .form {
+	width: 400px;
+	margin: 0 auto;
+}
+.PostAddEdit .form input,
+.PostAddEdit .form textarea {
+	width: 100%;
 }
 
 .PageNotFound {

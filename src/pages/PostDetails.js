@@ -2,14 +2,15 @@ import { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-const BASE_URL = "https://jsonplaceholder.typicode.com/posts/";
+// const BASE_URL = "https://jsonplaceholder.typicode.com/posts";
+const BASE_URL = "https://crudcrud.com/api/755661ddbba048079d0caff54268836e/posts";
 
 function PostDetails() {
   let { postId } = useParams();
   const [post, setPost] = useState(null)
 
   useEffect(() => {
-    axios.get(BASE_URL + postId).then((response) => {
+    axios.get(BASE_URL + "/" + postId).then((response) => {
       setPost(response.data);
     })
   }, []);
