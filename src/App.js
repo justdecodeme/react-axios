@@ -22,7 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/posts" element={<PostsList />} />
             <Route path="/post/add" element={<PostAdd />} />
-            <Route path="/post/details" element={<PostDetails />} />
+            <Route path="/post/details/:postId" element={<PostDetails />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>

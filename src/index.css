@@ -20,6 +20,36 @@ li {
 	list-style: none;
 }
 
+table {
+	/* table-layout: fixed; */
+	width: 100%;
+	border-collapse: collapse;
+	border: 2px solid #ccc;
+	text-align: left;
+}
+
+table tr {
+	border-bottom: 1px solid #ccc;
+}
+table th,
+table td {
+	padding: 10px 10px;
+	border-left: 1px solid #ccc;
+}
+table th:first-child,
+table td:first-child {
+	width: 70px;
+}
+table th:last-child,
+table td:last-child {
+	width: 250px;
+}
+table td button {
+	margin: 0 10px;
+	padding: 6px 10px;
+	cursor: pointer;
+}
+
 header,
 footer {
 	background-color: #ccc;
